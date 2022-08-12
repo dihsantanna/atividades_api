@@ -1,6 +1,7 @@
 from flask import Flask, request
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Resource, Api
 
+from inserir_pessoa import inserir_pessoa
 from consultar_pessoa import consultar_pessoas
 
 app = Flask(__name__)
@@ -13,6 +14,11 @@ class Pessoas(Resource):
         id = request.args.get("id", type=int)
 
         resultado = consultar_pessoas(nome=nome, id=id)
+        return resultado
+
+    def post(self):
+        body = request.json
+        resultado = inserir_pessoa(body=body)
         return resultado
 
 

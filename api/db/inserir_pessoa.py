@@ -1,10 +1,10 @@
-from model import Pessoas
+from .model import Pessoas
 
 
 def inserir_pessoa(nome, idade):
     pessoa = Pessoas(nome=nome, idade=idade)
     pessoa.save()
-    print({"id": pessoa.id, "nome": pessoa.nome, "idade": pessoa.idade})
+    return pessoa
 
 
 if __name__ == "__main__":
