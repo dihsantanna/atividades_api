@@ -1,14 +1,12 @@
-from model import Pessoas
+from .model import Pessoas
 
 
 def deletar_pessoa(id):
     pessoa = Pessoas.query.filter_by(id=id).first()
     if not pessoa:
-        print(f"ID {id} não encontrado(a).")
-        return
-
+        return None
     pessoa.delete()
-    print(f"{pessoa.nome} foi removido(a) com sucesso!")
+    return pessoa
 
 
 if __name__ == "__main__":

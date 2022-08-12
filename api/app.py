@@ -1,9 +1,10 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 
-from inserir_pessoa import inserir_pessoa
 from consultar_pessoa import consultar_pessoas
+from inserir_pessoa import inserir_pessoa
 from editar_pessoa import editar_pessoa
+from deletar_pessoa import deletar_pessoa
 
 app = Flask(__name__)
 api = Api(app)
@@ -30,8 +31,11 @@ class Pessoas(Resource):
         resultado = editar_pessoa(body=body, id=id, nome=nome)
         return resultado
 
+    def delete(self, id):
+        return deletar_pessoa(id=id)
 
-api.add_resource(Pessoas, "/pessoas/")
+
+api.add_resource(Pessoas, "/pessoas//<int:id>")
 
 if __name__ == "__main__":
     app.run(debug=True)
