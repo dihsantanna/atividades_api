@@ -1,8 +1,8 @@
-from .model import Pessoas
+from .model import Atividades
 
 
 def deletar_pessoa(id):
-    pessoa = Pessoas.query.filter_by(id=id).first()
+    pessoa = Atividades.query.filter_by(id=id).first()
     if not pessoa:
         return None
     pessoa.delete()

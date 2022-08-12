@@ -1,10 +1,10 @@
-from .model import Pessoas
+from .model import Atividades
 
 
 def consultar_pessoas(nome=None, id=None):
     if id and not nome:
-        return Pessoas.query.filter_by(id=id).first()
+        return Atividades.query.filter_by(id=id).first()
     elif nome and not id:
-        return Pessoas.query.filter_by(nome=nome).first()
+        return Atividades.query.filter_by(nome=nome).first()
     else:
-        return Pessoas.query.all()
+        return Atividades.query.all()

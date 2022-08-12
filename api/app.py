@@ -6,6 +6,8 @@ from inserir_pessoa import inserir_pessoa
 from editar_pessoa import editar_pessoa
 from deletar_pessoa import deletar_pessoa
 
+from consultar_atividade import consultar_atividades
+from inserir_atividade import inserir_atividade
 
 app = Flask(__name__)
 api = Api(app)
@@ -44,9 +46,34 @@ class Pessoa(Resource):
         return deletar_pessoa(id=id)
 
 
+class Atividades(Resource):
+    def get(self):
+        pessoaId = request.args.get("pessoaId", type=int)
+        resultado = consultar_atividades(pessoa_id=pessoaId)
+        return resultado
+
+
+class Atividade(Resource):
+    def get(self, id):
+        resultado = consultar_atividades(id=id)
+        return resultado
+
+    def post(self, id):
+        body = request.json
+        resultado = inserir_atividade(body=body, pessoa_id=id)
+        return resultado
+
+    def put(self, id):
+        pass
+
+    def delete(self, id):
+        pass
+
+
 api.add_resource(Pessoas, "/pessoas/")
 api.add_resource(Pessoa, "/pessoas/<int:id>")
-
+api.add_resource(Atividades, "/atividades/")
+api.add_resource(Atividade, "/atividades/<int:id>")
 
 if __name__ == "__main__":
     app.run(debug=True)
