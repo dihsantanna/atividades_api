@@ -6,6 +6,7 @@ from inserir_pessoa import inserir_pessoa
 from editar_pessoa import editar_pessoa
 from deletar_pessoa import deletar_pessoa
 
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -13,9 +14,8 @@ api = Api(app)
 class Pessoas(Resource):
     def get(self):
         nome = request.args.get("nome", type=str)
-        id = request.args.get("id", type=int)
 
-        resultado = consultar_pessoas(nome=nome, id=id)
+        resultado = consultar_pessoas(nome=nome)
         return resultado
 
     def post(self):
@@ -25,17 +25,28 @@ class Pessoas(Resource):
 
     def put(self):
         nome = request.args.get("nome", type=str)
-        id = request.args.get("id", type=int)
         body = request.json
-        print(body)
         resultado = editar_pessoa(body=body, id=id, nome=nome)
+        return resultado
+
+
+class Pessoa(Resource):
+    def get(self, id):
+        resultado = consultar_pessoas(id=id)
+        return resultado
+
+    def put(self, id):
+        body = request.json
+        resultado = editar_pessoa(body=body, id=id)
         return resultado
 
     def delete(self, id):
         return deletar_pessoa(id=id)
 
 
-api.add_resource(Pessoas, "/pessoas//<int:id>")
+api.add_resource(Pessoas, "/pessoas/")
+api.add_resource(Pessoa, "/pessoas/<int:id>")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
