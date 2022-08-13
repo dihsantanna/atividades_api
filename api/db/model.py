@@ -30,9 +30,10 @@ class Pessoas(Base):
 class Atividades(Base):
     __tablename__ = "atividades"
     id = Column(Integer, primary_key=True)
-    nome = Column(String(80), index=True)
+    nome = Column(String(80))
     pessoa_id = Column(Integer, ForeignKey("pessoas.id"))
     pessoa = relationship("Pessoas")
+    status = Column(String(10), default="pendente")
 
     def __repr__(self):
         return f"<Atividade {self.nome}>"

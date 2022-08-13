@@ -1,7 +1,7 @@
-from .model import Atividades
+from .model import Pessoas
 
 
 def inserir_pessoa(nome, idade):
-    pessoa = Atividades(nome=nome, idade=idade)
+    pessoa = Pessoas(nome=nome, idade=idade)
     pessoa.save()
     return pessoa

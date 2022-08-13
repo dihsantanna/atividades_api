@@ -8,6 +8,7 @@ from deletar_pessoa import deletar_pessoa
 
 from consultar_atividade import consultar_atividades
 from inserir_atividade import inserir_atividade
+from editar_atividade import editar_atividade
 
 app = Flask(__name__)
 api = Api(app)
@@ -64,10 +65,8 @@ class Atividade(Resource):
         return resultado
 
     def put(self, id):
-        pass
-
-    def delete(self, id):
-        pass
+        resultado = editar_atividade(id=id)
+        return resultado
 
 
 api.add_resource(Pessoas, "/pessoas/")

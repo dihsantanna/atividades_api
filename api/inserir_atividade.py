@@ -31,6 +31,7 @@ def inserir_atividade(body, pessoa_id):
                     "id": resultado.id,
                     "nome": resultado.nome,
                     "pessoa_id": resultado.pessoa_id,
+                    "status": resultado.status,
                 }
             ),
             status=201,

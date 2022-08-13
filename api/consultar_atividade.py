@@ -15,6 +15,7 @@ def consultar_atividades(id=None, pessoa_id=None):
                 "id": atividade.id,
                 "nome": atividade.nome,
                 "pessoa_id": atividade.pessoa_id,
+                "status": atividade.status,
             }
             for atividade in resultado
         ]
@@ -23,4 +24,5 @@ def consultar_atividades(id=None, pessoa_id=None):
             "id": resultado.id,
             "nome": resultado.nome,
             "pessoa_id": resultado.pessoa_id,
+            "status": resultado.status,
         }
